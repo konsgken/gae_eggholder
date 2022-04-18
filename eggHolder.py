@@ -140,9 +140,11 @@ def mutation(offspring: np.array, alpha: float) -> np.array:
     """
 
     indices = np.where(np.random.rand(len(offspring), 1) <= alpha)[0]
-    offspring[indices, :] = offspring[indices, :] + 10 * np.random.randn(len(indices), 2)
-    offspring[indices, 0] = min(int_max, max(0, max(offspring[indices, 0])))
-    offspring[indices, 1] = min(int_max, max(0, max(offspring[indices, 1])))
+    if len(indices) != 0:
+
+        offspring[indices, :] = offspring[indices, :] + 10 * np.random.randn(len(indices), 2)
+        offspring[indices, 0] = min(int_max, max(0, max(offspring[indices, 0])))
+        offspring[indices, 1] = min(int_max, max(0, max(offspring[indices, 1])))
 
     return offspring
 
